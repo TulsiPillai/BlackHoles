@@ -8,8 +8,7 @@ public class StretchFactor : MonoBehaviour {
 	public float exgValue = 1.0f;
 	private Vector3 originalScale;
 	private float mu = 0.19f;
-	private Transform tx;
-	private Vector3 velocity = Vector3.zero;
+	private Transform tx;	private Vector3 velocity = Vector3.zero;
 	private Vector3 pVec;
 	private Vector3 eVec;
 	private Vector3 lVec;
@@ -19,22 +18,18 @@ public class StretchFactor : MonoBehaviour {
 	GameObject parent;
 	Vector3 sVec;
 	Vector3 tVec;
-	float Sradius;
-	float Sphi;
+	float Sradius;	float Sphi;
 	float Stheta;
 	float Tradius;
 	float Tphi;
 	float Ttheta;
-	//Vector3 centreOfMale;
 	private Vector3 newScale;	
 
 	// Use this for initialization
 	void Start () {
 		originalScale = transform.localScale;   //to reset scale after every update
-		//print (originalScale);
-		tx = transform;
+		//print (originalScale);		tx = transform;
 		maleMesh = GameObject.Find("Skin").GetComponent<SkinnedMeshRenderer> ();
-		//centreOfMale = maleMesh.bounds.extents;
 		parent = GameObject.Find ("Parent").gameObject;
 	}
 
@@ -42,8 +37,8 @@ public class StretchFactor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {	
 			newScale = calcWaveFields ();
-			//newScale.z = originalScale.z *(A.z); 
-			transform.localScale = Vector3.SmoothDamp(transform.localScale,newScale, ref velocity,0.005f); //updating new scale 
+			//update new scale
+			transform.localScale = Vector3.SmoothDamp(transform.localScale,newScale, ref velocity,0.005f);  
 			//Update values to GUI
 			float height = newScale.y; 
 			float width = newScale.x;
@@ -58,10 +53,7 @@ public class StretchFactor : MonoBehaviour {
 			xValue.text = "Width: " + newXValue; 
 			Text exg = GameObject.Find("exg").GetComponent<Text>();
 			string exgString = exgValue.ToString();
-			exg.text = exgString;
-			//Text mr = GameObject.Find("mr").GetComponent<Text>();
-			//string mrString = mu.ToString();
-			///mr.text = mrString;
+			exg.text = exgString
 					
 	}	
 	public Vector3 calcWaveFields()
